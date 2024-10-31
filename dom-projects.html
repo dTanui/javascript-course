@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <p> You Tube Subscribe Button</p>
+
+  <button onclick="subscribe()" class="js-subscribe-button" style="margin-bottom: 40px;">Subscribe</button>
+  
+  <div>
+    <button onclick="add()" class="js-increment">Add</button>
+  <button onclick="sub()" class="js-decrement">Subtract</button>
+  <p >The total is <span class="js-display">0</span></p>
+  </div>
+  
+  <div>
+    <p>
+        Amazon Shipping Calculator <br>
+        Orders under $40 = +$10 shipping <br>
+        Orders over $40 = Free shipping <br>
+    </p>
+  </div>
+
+  <div>
+    <input  placeholder="Cost of order" class="js-input-value">
+    <button onclick="totalCost()">Calculate</button>
+    <p class="js-display-cost"></p>
+  </div>
+
+
+  <script>
+    document.querySelector('.js-display').innerHTML = JSON.parse(localStorage.getItem('display')) || 0;
+
+    function subscribe(){
+
+      const buttonElement = document.querySelector('.js-subscribe-button');
+
+      /*
+      if (buttonElement.innerText === 'Subscribe'){
+        buttonElement.innerText = 'Subscried' ;
+      } else {
+        buttonElement.innerText = 'Subscribe';
+      }
+      */
+
+      buttonElement.innerText === 'Subscribe' ? buttonElement.innerText = 'Subscribed' : buttonElement.innerText = 'Subscribe' ;
+
+    }
+
+
+    function add() {
+      document.querySelector('.js-display').innerHTML++;
+      localStorage.setItem('display', JSON.stringify(document.querySelector('.js-display').innerHTML));
+    }
+
+    function sub(){
+      document.querySelector('.js-display').innerHTML-- ;
+      localStorage.setItem('display', JSON.stringify(document.querySelector('.js-display').innerHTML));
+
+    }
+
+
+    function totalCost () {
+
+     let cost = Number(document.querySelector('.js-input-value').value);
+
+     (cost <40) ? cost += 10 : cost += 0 ;
+
+     document.querySelector('.js-display-cost').innerHTML = cost ;
+
+    }
+     
+  </script>
+</body>
+</html>
