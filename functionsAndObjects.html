@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Function</title>
+</head>
+<body>
+  <button 
+  onclick="function1('rock');">Rock</button>
+
+  <button
+  onclick="function1('paper');">Paper</button>
+
+  <button
+  onclick="function1('scissors');">Scissors</button>
+
+  <button onclick="scores.wins = 0; scores.losses = 0; scores.ties = 0;
+  localStorage.removeItem('scores');
+  ">Reset scores</button>
+
+
+  <script>
+    
+      let scores = JSON.parse(localStorage.getItem
+          ('scores')) || {
+              wins : 0,
+              losses : 0,
+              ties : 0
+            
+          };
+
+          /*
+          if (!scores){
+            scores ={
+              wins : 0,
+              losses : 0,
+              ties : 0
+            };
+          };
+          */
+
+    function function1(selectedChoice){
+      const randomSelect = Math.random();
+
+      if (selectedChoice === 'rock'){
+          if ( randomSelect <= 1/3 ){
+            let compChoice = 'rock';
+            scores.ties++;
+          alert (`Computer selected Rock :  Its a Tie , the ties are   ${scores.ties} `) ;
+        }else if (randomSelect <= 2/3 ){
+          let compChoice = 'paper';
+          scores.losses++;
+          alert (`Computer selected Paper: You lost and the losses are ${scores.losses}`);
+        }else if (randomSelect > 2/3){
+          let compChoice = 'scissors';
+          scores.wins++;
+          alert (`Computer selected Scissors: You Win and the wins are ${scores.wins}`);
+        }
+
+      }else if (selectedChoice === 'paper'){
+          if (randomSelect <= 1/3 ){
+            let compChoice = 'rock';
+          alert ('Computer selected Rock : You Win') ;
+        }else if (randomSelect <= 2/3 ){
+          let compChoice = 'paper';
+          alert ('Computer selected Paper: Its a Tie');
+        }else if (randomSelect > 2/3){
+          let compChoice = 'scissors';
+          alert ('Computer selected Scissors: You lost');
+        }
+
+      }else if (selectedChoice === 'scissors'){
+          if (randomSelect <= 1/3 ){
+            let compChoice = 'rock';
+          alert ('Computer selected Rock : You lost') ;
+            }else if (randomSelect <= 2/3 ){
+          let compChoice = 'paper';
+          alert ('Computer selected Paper: You Win');
+              }else if (randomSelect > 2/3){
+              let compChoice = 'scissors';
+              alert ('Computer selected Scissors: Its a Tie');
+      }
+
+      }
+    
+      localStorage.setItem('scores', JSON.stringify(scores));
+    }
+
+  </script>
+</body>
+</html>
